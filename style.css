@@ -1,0 +1,103 @@
+
+✅ 4. CSS (style.css — Modern UI/UX Styling)
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0d0d0d;
+  color: white;
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background: #111;
+  border-bottom: 1px solid #333;
+}
+
+nav h2 {
+  font-size: 24px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+nav ul li a {
+  color: #ddd;
+  text-decoration: none;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: #4da8ff;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  margin-top: 120px;
+}
+
+.hero h1 {
+  font-size: 48px;
+}
+
+.hero p {
+  max-width: 550px;
+  margin: auto;
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 20px;
+  background: #4da8ff;
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #1b6dc9;
+}
+
+/* Cards */
+.container {
+  padding: 40px 60px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.card {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 14px;
+  border: 1px solid #333;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  border-color: #4da8ff;
+}
+
+.card h3 {
+  margin: 0 0 10px;
+}
+
+.card span {
+  font-size: 14px;
+  opacity: 0.7;
+}

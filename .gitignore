@@ -1,0 +1,6 @@
+# Project-level ignores
+node_modules/
+.env
+venv/
+.DS_Store
+
