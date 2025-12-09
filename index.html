@@ -1141,6 +1141,109 @@
       .contact-form { padding: 40px 20px; }
       .form { gap: 20px; }
       .footer-content { padding: 30px 20px; }
+   
+   
+/* Container */
+.contact-container {
+  max-width: 550px;
+  margin: 60px auto;
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Title */
+.contact-title {
+  text-align: center;
+  font-size: 28px;
+  color: white;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+}
+
+/* Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Input Group */
+.form-group {
+  position: relative;
+  width: 100%;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  outline: none;
+  border-radius: 10px;
+  background: transparent;
+  color: white;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.form-group textarea {
+  resize: none;
+}
+
+/* Floating Label */
+.form-group label {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.form-group textarea + label {
+  top: 15px;
+}
+
+/* Animation on focus or filled */
+.form-group input:focus + label,
+.form-group input:valid + label,
+.form-group textarea:focus + label,
+.form-group textarea:valid + label {
+  top: -10px;
+  left: 10px;
+  font-size: 12px;
+  color: #00eaff;
+}
+
+/* Input Focus */
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #00eaff;
+}
+
+/* Submit Button */
+.submit-btn {
+  padding: 14px;
+  background: #00eaff;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.3s ease;
+  font-weight: 600;
+}
+
+.submit-btn:hover {
+  background: #00b4cc;
+  box-shadow: 0 0 12px #00eaff;
+}
+
     }
   </style>
 
