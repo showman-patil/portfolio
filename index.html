@@ -1133,84 +1133,160 @@
         </div>
       </div>
       <div class="contact-item">
-<svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
-
-  <!-- Glow + depth -->
+<svg viewBox="0 0 240 100" width="240" height="100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background sky with animated gradient (sunset to sunrise) -->
   <defs>
-    <filter id="blueGlow">
-      <feGaussianBlur stdDeviation="7" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#081650">
+        <animate attributeName="stop-color"
+                 values="#081650;#ff7b54;#00c9ff;#081650"
+                 dur="8s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="100%" stop-color="#00c9ff">
+        <animate attributeName="stop-color"
+                 values="#00c9ff;#ffe66d;#081650;#00c9ff"
+                 dur="8s" repeatCount="indefinite" />
+      </stop>
+    </linearGradient>
 
-    <!-- Blue 3D gradient -->
-    <radialGradient id="bluePinGradient" cx="30%" cy="25%">
-      <stop offset="0%" stop-color="#e6f6ff"/>
-      <stop offset="45%" stop-color="#38bdf8"/>
-      <stop offset="100%" stop-color="#003f6b"/>
+    <!-- Ground gradient -->
+    <linearGradient id="groundGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#03324f" />
+      <stop offset="100%" stop-color="#021520" />
+    </linearGradient>
+
+    <!-- Runner body gradient to give slight 3D feel -->
+    <linearGradient id="runnerGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#222" />
+      <stop offset="100%" stop-color="#555" />
+    </linearGradient>
+
+    <!-- Location halo (crazy 3D-ish pulsing ring) -->
+    <radialGradient id="locHalo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#00e5ff" stop-opacity="0" />
     </radialGradient>
   </defs>
 
-  <!-- Ripple pulse -->
-  <circle cx="100" cy="150" r="22" stroke="#38bdf8" stroke-width="3" fill="none" opacity="0.8">
-    <animate attributeName="r" values="22;70" dur="2.2s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0.8;0" dur="2.2s" repeatCount="indefinite"/>
+  <!-- Sky -->
+  <rect x="0" y="0" width="240" height="70" fill="url(#skyGrad)" />
+
+  <!-- Ground -->
+  <rect x="0" y="70" width="240" height="30" fill="url(#groundGrad)" />
+
+  <!-- Sun / Moon moving across sky -->
+  <circle id="sun" cx="20" cy="30" r="6" fill="#ffe66d">
+    <animate attributeName="cx" values="20;220;20" dur="8s" repeatCount="indefinite" />
+    <animate attributeName="cy" values="30;15;30" dur="8s" repeatCount="indefinite" />
   </circle>
 
-  <!-- Floating shadow -->
-  <ellipse cx="100" cy="155" rx="26" ry="7" fill="#000" opacity="0.25">
-    <animate attributeName="rx" values="26;32;26" dur="2.5s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0.25;0.12;0.25" dur="2.5s" repeatCount="indefinite"/>
+  <!-- Pulsing 3D-ish location aura -->
+  <g transform="translate(120, 65)">
+    <circle r="10" fill="url(#locHalo)">
+      <animate attributeName="r" values="8;15;8" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Location pin core -->
+    <g>
+      <path d="M0 -10
+               C -5 -10 -8 -6 -8 -2
+               C -8 4 0 11 0 11
+               C 0 11 8 4 8 -2
+               C 8 -6 5 -10 0 -10 Z"
+            fill="#00c9ff">
+        <animateTransform attributeName="transform"
+                          type="scale"
+                          values="1;1.1;1"
+                          dur="1.8s"
+                          repeatCount="indefinite" />
+      </path>
+      <circle cy="-4" r="3" fill="#021520" />
+    </g>
+  </g>
+
+  <!-- Shadow path to make runner look grounded & 3D -->
+  <ellipse id="shadow" cx="40" cy="78" rx="10" ry="3" fill="#000" opacity="0.45">
+    <animate attributeName="cx" values="40;200;40" dur="3s" repeatCount="indefinite" />
+    <animate attributeName="rx" values="10;16;10" dur="0.6s" repeatCount="indefinite" />
   </ellipse>
 
-  <!-- Location pin -->
-  <g filter="url(#blueGlow)">
-    <path d="M100 28
-             C62 28 40 56 40 88
-             C40 128 100 170 100 170
-             C100 170 160 128 160 88
-             C160 56 138 28 100 28Z"
-          fill="url(#bluePinGradient)">
-      <animateTransform
-        attributeName="transform"
-        type="translate"
-        values="0 0; 0 -12; 0 0"
-        dur="2.6s"
-        repeatCount="indefinite"/>
-    </path>
+  <!-- Runner group -->
+  <g id="runner" transform="translate(40, 60)">
+    <!-- Torso -->
+    <rect x="-2" y="-18" width="8" height="14" rx="3" fill="url(#runnerGrad)" />
 
-    <!-- Inner core -->
-    <circle cx="100" cy="90" r="20" fill="#ffffff" opacity="0.95"/>
-    <circle cx="100" cy="90" r="12" fill="#38bdf8">
-      <animate attributeName="r" values="10;14;10" dur="1.4s" repeatCount="indefinite"/>
-    </circle>
+    <!-- Head (slightly styled like an action hero with hairband) -->
+    <g>
+      <circle cx="2" cy="-24" r="4" fill="#f2b28c" />
+      <!-- Hair -->
+      <path d="M-1 -27 Q2 -29 5 -27 Q2 -30 -1 -30 Z"
+            fill="#2b2b2b" />
+      <!-- Headband -->
+      <rect x="-2.5" y="-26" width="9" height="1.5" fill="#ff4f5e" />
+    </g>
+
+    <!-- Front arm -->
+    <g id="frontArm">
+      <rect x="-6" y="-16" width="4" height="11" rx="2" fill="#f2b28c">
+        <animateTransform attributeName="transform"
+                          type="rotate"
+                          values="-20  -4 -16; 25 -4 -16; -20 -4 -16"
+                          dur="0.5s" repeatCount="indefinite" />
+      </rect>
+    </g>
+
+    <!-- Back arm -->
+    <g id="backArm">
+      <rect x="6" y="-16" width="4" height="11" rx="2" fill="#d89a76">
+        <animateTransform attributeName="transform"
+                          type="rotate"
+                          values="25 8 -16; -25 8 -16; 25 8 -16"
+                          dur="0.5s" repeatCount="indefinite" />
+      </rect>
+    </g>
+
+    <!-- Shorts -->
+    <rect x="-2.5" y="-6" width="9" height="7" rx="2" fill="#007bff" />
+
+    <!-- Front leg -->
+    <g id="frontLeg">
+      <rect x="-2" y="0" width="4" height="14" rx="2" fill="#f2b28c">
+        <animateTransform attributeName="transform"
+                          type="rotate"
+                          values="25 0 0; -35 0 0; 25 0 0"
+                          dur="0.5s" repeatCount="indefinite" />
+      </rect>
+      <!-- Shoe -->
+      <rect x="-2.5" y="13" width="6" height="2.5" rx="1" fill="#ffffff" />
+    </g>
+
+    <!-- Back leg -->
+    <g id="backLeg">
+      <rect x="3" y="0" width="4" height="14" rx="2" fill="#d89a76">
+        <animateTransform attributeName="transform"
+                          type="rotate"
+                          values="-35 5 0; 25 5 0; -35 5 0"
+                          dur="0.5s" repeatCount="indefinite" />
+      </rect>
+      <!-- Shoe -->
+      <rect x="2.5" y="13" width="6" height="2.5" rx="1" fill="#ffffff" />
+    </g>
+
+    <!-- Slight up-down bounce for full body -->
+    <animateTransform attributeName="transform"
+                      type="translate"
+                      values="40,60; 40,58; 40,60"
+                      dur="0.5s" repeatCount="indefinite" />
   </g>
 
-  <!-- Orbiting particles -->
-  <g>
-    <circle cx="100" cy="65" r="3" fill="#7dd3fc">
-      <animateTransform
-        attributeName="transform"
-        type="rotate"
-        from="0 100 90"
-        to="360 100 90"
-        dur="3s"
-        repeatCount="indefinite"/>
-    </circle>
+  <!-- Runner horizontal movement: left to right and loop -->
+  <animate xlink:href="#runner"
+           attributeName="transform"
+           type="translate"
+           values="40 60; 200 60; 40 60"
+           dur="3s"
+           repeatCount="indefinite" />
 
-    <circle cx="100" cy="115" r="4" fill="#0ea5e9">
-      <animateTransform
-        attributeName="transform"
-        type="rotate"
-        from="360 100 90"
-        to="0 100 90"
-        dur="4.2s"
-        repeatCount="indefinite"/>
-    </circle>
-  </g>
-
+  <!-- Sync shadow with same timing already defined above -->
 </svg>
         <div>
           <h4>Location</h4>
