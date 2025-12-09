@@ -352,10 +352,15 @@
   <section class="contact-form" id="contact">
     <h2>Get In Touch</h2>
     <p class="contact-subtitle">Have a project in mind? Let's collaborate!</p>
- <form action="https://formsubmit.co/rahul1030patil@gamil.com redirect=https://showman-patil.github.io/portfolio/" method="POST">
+ <form action="https://formsubmit.co/rahul1030patil@gmail.com" method="POST">
 
+  <!-- Disable captcha -->
   <input type="hidden" name="_captcha" value="false">
 
+  <!-- Redirect after submit -->
+  <input type="hidden" name="_next" value="https://showman-patil.github.io/portfolio/">
+
+  <!-- Email template -->
   <input type="hidden" name="_template" value="table">
 
   <div class="form-group">
@@ -372,12 +377,10 @@
     <textarea name="message" id="message" placeholder="Your message here..." rows="6" required></textarea>
     <label for="message">Message</label>
   </div>
-<input type="hidden" name="_next" value="https://showman-patil.github.io/portfolio/">
 
-  <!-- Optional: disable captcha -->
-  <input type="hidden" name="_captcha" value="false">
   <button type="submit" class="btn primary">Send Message</button>
 </form>
+
     <div class="contact-info">
       <div class="contact-item">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
